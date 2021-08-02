@@ -3,6 +3,8 @@
         <headerbar />
         <banner />
         <type />
+        <footerbar />
+        <tuijian />
     </div>
 </template>
 
@@ -10,6 +12,8 @@
     import headerbar from '../../components/header.vue';
     import banner from './banner.vue';
     import type from './type.vue';
+    import footerbar from './footer.vue';
+    import tuijian from './tuijian.vue'
     export default {
         data() {
             return {}
@@ -17,7 +21,9 @@
         components: {
             headerbar,
             banner,
-            type
+            type,
+            tuijian,
+            footerbar
         }
     }
 </script>
@@ -28,7 +34,5 @@
         padding: 8px 16px;
     }
 
-    .van-col:nth-child(1) {
-        background: url(https://www.samsungeshop.com.cn/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/global-samsung-logo1.svg) no-repeat 50% 50%;
-    }
+
 </style>
