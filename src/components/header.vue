@@ -19,7 +19,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .van-row {
         box-sizing: border-box;
         height: 56px;
@@ -31,6 +31,7 @@
         height: 100%;
     }
 
+    .van-row--justify-space-between 
     .van-col:nth-child(1) {
         background: url(https://www.samsungeshop.com.cn/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/global-samsung-logo1.svg) no-repeat 30% 30%;
     }
