@@ -1,18 +1,17 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-export default {
-  name: "App",
-  components: {},
-  created() {},
-  data() {
-    return {};
-  },
-  methods: {},
-};
+  export default {
+    name: 'App',
+    model: 'history',
+    components: {}
+  }
 </script>
 
 <style>
+
 </style>
