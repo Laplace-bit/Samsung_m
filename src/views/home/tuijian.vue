@@ -25,15 +25,19 @@
     }
 </script>
 
-<style>
+<style scoped>
     .tuijian-content {
         padding: 0 4vw !important;
-        height: 90vw;
+    }
+    img{
+        width: 100%;
+        height: 100%;
     }
 
     .tuijian-content .van-col--12 {
         height: 90vw;
         padding: 0 2px;
+        margin-bottom: 1.33vw;
     }
 
     .van-col--24 {
