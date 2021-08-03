@@ -6,6 +6,7 @@ import Vuex from 'vuex'
 // 引入vant框架
 import Vant from 'vant';
 import 'vant/lib/index.css';
+
 import {
   Lazyload
 } from 'vant';

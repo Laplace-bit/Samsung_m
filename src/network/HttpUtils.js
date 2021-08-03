@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// 请求地址前缀
-axios.defaults.baseURL = "/api"
-
 // 使用axios拦截器拦截所用请求并在请求头中添加token
 // axios.interceptors.request.use(config => {
 //     config.headers.Authorization = window.sessionStorage.getItem("token");
@@ -14,14 +11,25 @@ axios.defaults.baseURL = "/api"
 const HttpUtils = {
     async page(params, success) {
         console.log(params)
-        const { data: res } = await axios.post("product/h5/plp/page", params);
+        const { data: res } = await axios.post("/api/product/h5/plp/page", params);
         success(res);
     },
 
     async menu(success){
-        const {data:res}=await axios.get("/cms/content/indexAd")
+        const {data:res}=await axios.get("/api/cms/content/indexAd")
         success(res)
-    }   
+    },
+
+    // 登录
+    async login(params,success) {
+        const { data: res } = await axios.post("http://127.0.0.1:8888/api/private/v1/login",params)
+        success(res);
+    },
+    // 注册
+    async register() {
+        const { data: res } = await axios.post("");
+        success(res)
+    }
 
 }
 export default HttpUtils;

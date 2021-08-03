@@ -2,61 +2,68 @@
   <div id="loginForm">
     <h2 class="title">手机号快捷登录</h2>
     <van-row>
-      <van-col span="1"><van-icon name="manager" /></van-col>
-      <van-col span="22">
-        <van-form validate-first @failed="onFailed">
-          <van-field
-            v-model="username"
-            name="手机号"
-            placeholder="手机号"
-            :rules="[{ required: true, message: '请填写正确手机号' }]"
-          />
-          <van-field
-            v-model="password"
-            type="password"
-            name="密码"
-            placeholder="密码"
-            :rules="[{ required: true, message: '请填写密码' }]"
-          />
-
-          <div style="margin: 16px">
+      <van-col span="2"></van-col>
+      <van-col span="20">
+        <van-form validate-first @failed="onFailed" @submit="onSubmit">
+          <div class="tel">
+            <van-icon name="manager" />
+            <van-field
+              v-model="username"
+              name="username"
+              placeholder="手机号"
+              :rules="[{ required: true, message: '请填写正确手机号' }]"
+            />
+          </div>
+          <div class="password">
+            <van-icon name="lock" />
+            <van-field
+              v-model="password"
+              type="password"
+              name="password"
+              placeholder="密码"
+              :rules="[{ required: true, message: '请填写密码' }]"
+            />
+          </div>
+          <div style="margin: 16px" class="btn">
             <van-button round block type="info" native-type="submit"
-              >提交</van-button
+              >登录</van-button
             >
           </div>
         </van-form>
+        <OtherWay></OtherWay>
       </van-col>
-      <van-col span="1"></van-col>
+      <van-col span="2"></van-col>
     </van-row>
   </div>
 </template>
 <script>
+import OtherWay from "./OtherLoginWay.vue";
 export default {
   data() {
     return {
-      username: "",
-      password: "",
-      pattern: /\d{6}/,
+      username: "admin",
+      password: "123456",
+      // pattern: /^1[3,4,5,6,7,8]\d{9}/,
     };
   },
+  components: {
+    OtherWay,
+  },
   methods: {
-    // 校验函数返回 true 表示校验通过，false 表示不通过
-    validator(val) {
-      return /1\d{10}/.test(val);
-    },
-    // 异步校验函数返回 Promise
-    asyncValidator(val) {
-      return new Promise((resolve) => {
-        Toast.loading("验证中...");
-
-        setTimeout(() => {
-          Toast.clear();
-          resolve(/\d{6}/.test(val));
-        }, 1000);
-      });
-    },
     onFailed(errorInfo) {
       console.log("failed", errorInfo);
+    },
+    onSubmit(val) {
+      this.$http.login(val, (res) => {
+        if (res.meta.status != 200) {
+          this.$toast.fail("用户名或密码错误，请重新尝试~");
+          return;
+        }
+        this.$toast.success("登录成功");
+        // 存储token
+        window.sessionStorage.setItem("token", res.data.token);
+        this.$router.push("/home");
+      });
     },
   },
 };
@@ -66,8 +73,56 @@ export default {
 .title {
   text-align: center;
   font-size: 30px;
+  margin-top: 70px;
 }
-.van-icon-manager{
+.tel,
+.password {
+  margin-top: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+}
+.van-field--error {
+  height: 58px;
+}
+.van-icon-manager,
+.van-icon-lock {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  align-self: center;
+  z-index: 10;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.van-icon-manager::before {
+  width: 20px;
+  height: 20px;
+}
+.van-icon-lock ::before {
+  height: 20px;
+  width: 20px;
+}
+.van-field__control {
+  font-size: 14px;
+}
+.van-field {
+  height: 48px;
+}
+/deep/.van-field__error-message {
   text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.van-button--info {
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #000;
+}
+.btn {
+  margin-top: 40px !important;
 }
 </style>

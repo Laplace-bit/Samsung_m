@@ -5,13 +5,12 @@
 </template>
 
 <script>
-  export default {
-    name: 'App',
-    model: 'history',
-    components: {}
-  }
+export default {
+  name: "App",
+  model: "history",
+  components: {},
+};
 </script>
 
 <style>
-
 </style>
