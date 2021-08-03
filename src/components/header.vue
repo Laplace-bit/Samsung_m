@@ -30,6 +30,9 @@
     .van-col {
         height: 100%;
     }
+    .van-col .van-grid .van-grid-item{
+        margin-bottom:0px
+    }
 
     .van-row--justify-space-between 
     .van-col:nth-child(1) {

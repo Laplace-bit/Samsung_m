@@ -1,10 +1,12 @@
 <template>
     <div>
         <headerbar />
-        <banner />
-        <type />
+        <div class='main'>
+            <banner />
+            <type />
+            <tuijian />
+        </div>
         <footerbar />
-        <tuijian />
     </div>
 </template>
 
@@ -12,7 +14,7 @@
     import headerbar from '../../components/header.vue';
     import banner from './banner.vue';
     import type from './type.vue';
-    import footerbar from './footer.vue';
+    import footerbar from '../../components/footer.vue';
     import tuijian from './tuijian.vue'
     export default {
         data() {
@@ -34,5 +36,7 @@
         padding: 8px 16px;
     }
 
-
+    .main {
+        margin-bottom: 17.2vw;
+    }
 </style>
