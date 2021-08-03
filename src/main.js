@@ -14,6 +14,11 @@ Vue.use(Vant);
 Vue.use(Lazyload);
 Vue.use(Vuex)
 
+// 引入swiper
+import swiper from 'swiper';
+import 'swiper/dist/css/swiper.min.css';
+
+
 import HttpUtils from "./network/HttpUtils";
 Vue.prototype.$http = HttpUtils;
 Vue.config.productionTip = false

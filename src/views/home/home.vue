@@ -1,10 +1,15 @@
 <template>
     <div>
         <headerbar />
-        <banner />
-        <type />
+        <div class='main'>
+            <banner />
+            <type />
+            <tuijian />
+            <hotSell />
+            <newContent />
+            <product />
+        </div>
         <footerbar />
-        <tuijian />
     </div>
 </template>
 
@@ -12,8 +17,11 @@
     import headerbar from '../../components/header.vue';
     import banner from './banner.vue';
     import type from './type.vue';
-    import footerbar from './footer.vue';
-    import tuijian from './tuijian.vue'
+    import footerbar from '../../components/footer.vue';
+    import tuijian from './tuijian.vue';
+    import hotSell from './hotSell.vue';
+    import newContent from './newContent.vue';
+    import product from './product.vue'
     export default {
         data() {
             return {}
@@ -23,16 +31,16 @@
             banner,
             type,
             tuijian,
-            footerbar
+            hotSell,
+            footerbar,
+            newContent,
+            product,
         }
     }
 </script>
 
 <style>
-    .van-row {
-        height: 56px;
-        padding: 8px 16px;
+    .main{
+        background-color: #f7f7f7;
     }
-
-
 </style>

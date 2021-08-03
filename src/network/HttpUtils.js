@@ -1,10 +1,5 @@
 import axios from "axios";
 
-// 使用axios拦截器拦截所用请求并在请求头中添加token
-// axios.interceptors.request.use(config => {
-//     config.headers.Authorization = window.sessionStorage.getItem("token");
-//     return config
-// })
 
 // 请求方法
 
@@ -29,9 +24,30 @@ const HttpUtils = {
     async register() {
         const { data: res } = await axios.post("");
         success(res)
+        const {
+            data: res
+        } = await axios.post("/api/product/h5/plp/page", params);
+        success(res);
+    },
+
+    async menu(success) {
+        const {
+            data: res
+        } = await axios.get("/api/cms/content/indexAd")
+        success(res)
+    },
+    // 新品
+    async recSkuList(success) {
+        const {
+            data: res
+        } = await axios.get('/api/product/spuRec/recSkuList')
+        success(res)
+    },
+    // product数据
+    async getProductList(success){
+        const {data:res} = await axios.get('/api/product/index/menu')
+        success(res)
     }
 
 }
 export default HttpUtils;
-
-
