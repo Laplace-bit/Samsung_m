@@ -67,4 +67,7 @@ export default {
   text-align: center;
   font-size: 30px;
 }
+.van-icon-manager{
+  text-align: right;
+}
 </style>
