@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './routers';
 import store from "./store/store"
+
 // 引入vant框架
 import Vant from 'vant';
 import 'vant/lib/index.css';
@@ -25,5 +26,6 @@ Vue.config.productionTip = false
 new Vue({
   store,
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

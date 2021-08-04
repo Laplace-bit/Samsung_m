@@ -15,6 +15,10 @@ const Search =()=>import('./views/search/search')
 const Cart = () => import('./views/cart/Cart')
 // 详情页
 const Detail = ()=>import("./views/detail/detail")
+//
+const Sort =()=>import('./views/sort/sort')
+
+
 Vue.use(vuerouter)
 const routes = [
     { path: '/', redirect: "/home" },
@@ -49,6 +53,8 @@ const routes = [
     // 详情页
     {path:'/detail',component:Detail},
 
+    { path:'/search',component:Search},
+    {path:'/sort',component:Sort}
 ];
 const router = new vuerouter({
     mode: 'history',

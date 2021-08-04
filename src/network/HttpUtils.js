@@ -77,6 +77,18 @@ const HttpUtils = {
     async getProductList(success){
         const {data:res} = await axios.get('/api/product/index/menu')
         success(res)
+    },
+
+    // 搜索功能
+    async search(id,success){
+        const {data:res}=await axios.get(`/api/product/psp/getKeywords/${id}`)
+        success(res)
+    },
+
+    // 分类列表
+    async sortList(success){
+        const {data:res}=await axios.get(`/api/product/index/navBar`)
+        success(res)
     }
 
 }

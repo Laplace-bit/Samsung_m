@@ -5,6 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+         showPopupPart1: false,
+        showPopupPart2: false,
+        count:0,
         showSku: false,
         con:"5555"
     },
@@ -20,6 +23,12 @@ export default new Vuex.Store({
         },
         ShowSku(state) {
             state.showSku = true;
-        }
+        },
+        openHeaderNavPart1(state){
+            state.showPopupPart1=true
+        },
+        openHeaderNavPart2(state){
+            state.showPopupPart2=true
+        },
     },
 })
