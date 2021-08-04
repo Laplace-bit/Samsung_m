@@ -24,10 +24,6 @@ const HttpUtils = {
     async register() {
         const { data: res } = await axios.post("");
         success(res)
-        const {
-            data: res
-        } = await axios.post("/api/product/h5/plp/page", params);
-        success(res);
     },
 
     async menu(success) {
@@ -46,6 +42,18 @@ const HttpUtils = {
     // product数据
     async getProductList(success){
         const {data:res} = await axios.get('/api/product/index/menu')
+        success(res)
+    },
+
+    // 搜索功能
+    async search(id,success){
+        const {data:res}=await axios.get(`/api/product/psp/getKeywords/${id}`)
+        success(res)
+    },
+
+    // 分类列表
+    async sortList(success){
+        const {data:res}=await axios.get(`/api/product/index/navBar`)
         success(res)
     }
 

@@ -8,6 +8,7 @@
             <hotSell />
             <newContent />
             <product />
+            <homeFooter />
         </div>
         <footerbar />
     </div>
@@ -17,11 +18,12 @@
     import headerbar from '../../components/header.vue';
     import banner from './banner.vue';
     import type from './type.vue';
-    import footerbar from '../../components/footer.vue';
     import tuijian from './tuijian.vue';
     import hotSell from './hotSell.vue';
     import newContent from './newContent.vue';
-    import product from './product.vue'
+    import product from './product.vue';
+    import homeFooter from './homeFoot.vue';
+    import footerbar from '../../components/footer.vue';
     export default {
         data() {
             return {}
@@ -35,12 +37,13 @@
             footerbar,
             newContent,
             product,
+            homeFooter
         }
     }
 </script>
 
 <style>
-    .main{
+    .main {
         background-color: #f7f7f7;
     }
 </style>

@@ -49,27 +49,6 @@
                                 </swiper>
                             </div>
                         </div>
-                        <!-- <van-swipe class="my-swipe" :loop="false" indicator-color="white" > -->
-                        <!-- <van-swipe-item v-for="(item1) in item.recSkuInfoList.slice(4)" :key="item1.skuId"> -->
-                        <!-- <a href="">
-                                    <div>
-                                        <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
-                                    </div>
-                                    <div class="product-item-t1">{{item1.skuTitl}}</div>
-                                    <div class="product-item-t2" v-html="item1.skuSubTitl">
-                                    </div>
-                                    <div class="product-item-jg">
-                                        <span class="miaosha-xj">￥{{item1.price.toFixed(2)}}</span>
-                                        <span class="product-yj">￥{{item1.origPr.toFixed(2)}}</span>
-                                    </div>
-                                </a> -->
-                        <!-- {{index}} -->
-
-
-
-
-                        <!-- </van-swipe-item> -->
-                        <!-- </van-swipe> -->
                     </div>
                 </div>
             </div>
@@ -104,8 +83,6 @@
         methods: {
             getProductList() {
                 this.$http.getProductList(res => {
-                    console.log(res);
-                    console.log(res.data);
                     this.ProductList = res.data;
                 })
             }

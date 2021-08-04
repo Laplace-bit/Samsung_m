@@ -9,9 +9,11 @@ const Login = () => import("./views/login/Login");
 const Terms = () => import("./views/register/terms");
 // 注册
 const Register = () => import("./views/register/Register");
-const Login =()=>import ("./views/login/Login")
 // 搜索
 const Search =()=>import('./views/search/search')
+// 
+const Sort =()=>import('./views/sort/sort')
+
 
 Vue.use(vuerouter)
 const routes = [
@@ -32,6 +34,7 @@ const routes = [
       }
     },
     { path:'/search',component:Search},
+    {path:'/sort',component:Sort}
 ];
 const router = new vuerouter({
     mode: 'history',

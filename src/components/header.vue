@@ -1,12 +1,15 @@
 <template>
     <div>
         <van-row type="flex" justify="space-between">
-            <van-col span="10"></van-col>
+            <van-col span="10">
+                <van-button type="default" to="/home">
+                </van-button>
+            </van-col>
             <van-col>
                 <van-button type="default" to="/search">
                     <van-icon name="search" />
                 </van-button>
-                <van-button type="default" >
+                <van-button type="default">
                     <van-icon name="shopping-cart-o" />
                 </van-button>
                 <van-button type="default" @click="showPopup">
@@ -14,22 +17,28 @@
                 </van-button>
             </van-col>
         </van-row>
-        <van-popup v-model="show">内容</van-popup>
+        <headerNav />
     </div>
+
+
 </template>
 
 <script>
+    import headerNav from './headerNav.vue'
     export default {
         data() {
             return {
-                show: false,
+                value: 22
             }
         },
         methods: {
-
             showPopup() {
-                this.show = true;
+                this.$store.commit('openHeaderNavPart1')
+                
             },
+        },
+        components: {
+            headerNav
         }
     }
 </script>
@@ -51,8 +60,17 @@
         margin-bottom: 0px
     }
 
-    .van-row--justify-space-between .van-col:nth-child(1) {
+    .van-row--justify-space-between .van-col:nth-child(1) .van-button {
         background: url(https://www.samsungeshop.com.cn/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/global-samsung-logo1.svg) no-repeat 30% 30%;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background-color: #fff
+    }
+
+    .van-button::before {
+        background-color: #fff
     }
 
     .van-button {
