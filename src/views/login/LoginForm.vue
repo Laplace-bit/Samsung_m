@@ -54,14 +54,15 @@ export default {
       console.log("failed", errorInfo);
     },
     onSubmit(val) {
+      console.log(val);
       this.$http.login(val, (res) => {
-        if (res.meta.status != 200) {
+        if (res.code != 1) {
           this.$toast.fail("用户名或密码错误，请重新尝试~");
           return;
         }
         this.$toast.success("登录成功");
-        // 存储token
-        window.sessionStorage.setItem("token", res.data.token);
+        // 存储cookie
+        document.cookie = `login=${val.username}`;
         this.$router.push("/home");
       });
     },
@@ -122,7 +123,12 @@ export default {
   background-color: #000;
   border: 1px solid #000;
 }
+.van-cell {
+  color: #fff;
+}
 .btn {
   margin-top: 40px !important;
+  display: flex;
+  justify-content: center;
 }
 </style>

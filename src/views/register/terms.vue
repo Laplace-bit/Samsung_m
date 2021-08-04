@@ -84,14 +84,12 @@ export default {
 };
 </script>
 
-<style>
-html,
-body,
-#app {
-  height: 100% !important;
+<style scoped>
+.van-row {
+  height: 100%;
 }
-
 #terms {
+  position: absolute;
   width: 100%;
   height: 100%;
   background-color: #000;
@@ -104,13 +102,13 @@ body,
   font-weight: 500;
   margin: 28px 0px 36px 0px;
 }
-
-.van-checkbox__label {
+/deep/.van-checkbox .van-checkbox__label {
   font-size: 16px;
   font-weight: 500;
-  line-height: 3;
+  line-height: 2.5 ;
   color: #fff;
 }
+
 .termsdetail {
   margin: 0;
   padding: 0;
@@ -123,6 +121,7 @@ body,
   color: #fff;
 }
 .agreebtn {
+  margin-top: 20px;
   width: 100%;
   text-align: center;
 }

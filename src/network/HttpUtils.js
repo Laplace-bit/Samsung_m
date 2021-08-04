@@ -17,17 +17,47 @@ const HttpUtils = {
 
     // 登录
     async login(params,success) {
-        const { data: res } = await axios.post("http://127.0.0.1:8888/api/private/v1/login",params)
+        const { data: res } = await axios({
+            url: "/userapi/login.php",
+            method: 'post',
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                let ret = '';
+                for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it])+'&'
+                }
+                return ret;
+            }],
+            data: {
+                tel: params.username,
+                password:params.password,
+            }
+        })
         success(res);
     },
     // 注册
-    async register() {
-        const { data: res } = await axios.post("");
+    async register(params,success) {
+        const { data: res } = await axios({
+            url: "/userapi/regist.php",
+            method: 'post',
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                let ret = '';
+                for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it])+'&'
+                }
+                return ret;
+            }],
+            data: {
+                tel: params.username,
+                password:params.password,
+            }
+        });
         success(res)
-        const {
-            data: res
-        } = await axios.post("/api/product/h5/plp/page", params);
-        success(res);
     },
 
     async menu(success) {

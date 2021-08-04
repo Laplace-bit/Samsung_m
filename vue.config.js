@@ -17,7 +17,15 @@ module.exports = {
             pathRewrite: {
                 '^/api': ''
             }
+        },
+        '/userapi': {
+            target: 'http://121.89.245.207/samsung/api',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/userapi': ''
+            }
         }
+
     },
     }
 }

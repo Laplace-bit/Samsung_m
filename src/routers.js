@@ -9,10 +9,12 @@ const Login = () => import("./views/login/Login");
 const Terms = () => import("./views/register/terms");
 // 注册
 const Register = () => import("./views/register/Register");
-const Login =()=>import ("./views/login/Login")
 // 搜索
 const Search =()=>import('./views/search/search')
-
+// 购物车
+const Cart = () => import('./views/cart/Cart')
+// 详情页
+const Detail = ()=>import("./views/detail/detail")
 Vue.use(vuerouter)
 const routes = [
     { path: '/', redirect: "/home" },
@@ -31,13 +33,41 @@ const routes = [
             next();
       }
     },
-    { path:'/search',component:Search},
+    { path: '/search', component: Search },
+    {
+        path: '/cart', component: Cart,
+        // 有cookie放行
+        beforeEnter: (to, from, next) => {
+            const isAgree = getCookie('login');
+            if (!isAgree) {
+                next({ path: '/login' });
+                return;
+            };
+            next();
+        },
+    },
+    // 详情页
+    {path:'/detail',component:Detail},
+
 ];
 const router = new vuerouter({
     mode: 'history',
     // 首页
     routes
 })
+
+// 获取cookie
+function getCookie(key) {
+    let c = document.cookie;
+    let arr = c.split("; ");
+    let obj = {};
+    arr.forEach((item) => {
+        let a = item.split("=");
+        obj[a[0]] = a[1];
+    });
+    if (key) return obj[key];
+    return obj;
+}
 
 
 export default router

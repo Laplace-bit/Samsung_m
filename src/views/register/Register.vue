@@ -17,17 +17,9 @@ export default {
 };
 </script>
 
-<style>
-html,
-body,
-#app {
-  height: 100% !important;
-  margin: 0;
-  padding: 0;
-  background-color: #000;
-}
-
+<style scoped>
 #register {
+  position: absolute;
   width: 100%;
   height: 100%;
   background-color: #000;

@@ -3,21 +3,40 @@
     <div class="InfoTitle">
       <h2>创建您的三星账户</h2>
       <p>
-        在下方输入手机号即可创建账户，<br />或者<sapn class="useEmail"
-          >点击此处使用电子邮箱地址</sapn
+        在下方输入手机号即可创建账户，<br />或者<span class="useEmail"
+          >点击此处使用电子邮箱地址</span
         >来创建
       </p>
     </div>
     <div class="infoForm">
       <form class="formbox" v-model="formdata">
-        <div :class="inputBox" v-for="item in formdata" :key="item.label">
-          <label :for="item.label">{{ item.cn }}</label>
+        <div
+          :class="{ inputBox: true }"
+          v-for="(item, index) in formdata"
+          :key="item.label"
+        >
+          <label
+            :for="item.label"
+            :class="[activeClass == index ? 'active' : '', item.classname]"
+            :ref="'label' + index"
+            >{{ item.cn }}</label
+          >
           <input
+            :index="index"
             :type="item.type"
             :name="item.label"
-            @focus="focusHandel"
+            @focus="focusHandel(index)"
+            @blur="blurHandel"
             v-model="item.value"
           />
+        </div>
+        <div class="btn">
+          <van-button type="default" @click.prevent="backHandel"
+            >返回</van-button
+          >
+          <van-button type="info" @click.prevent="registerHandel"
+            >注册</van-button
+          >
         </div>
       </form>
     </div>
@@ -27,10 +46,11 @@
 export default {
   data() {
     return {
+      activeClass: -1,
       formdata: [
         {
           label: "username",
-          cn: "用户名",
+          cn: "手机号码",
           type: "text",
           value: "",
           classname: "",
@@ -66,7 +86,46 @@ export default {
       ],
     };
   },
-  focusHandel() {},
+  methods: {
+    focusHandel(e) {
+      this.activeClass = e;
+    },
+    blurHandel() {
+      this.formdata.forEach((item) => {
+        if (item.value) {
+          item.classname = "active";
+        } else {
+          item.classname = "";
+        }
+      });
+      this.activeClass = -1;
+    },
+    backHandel() {
+      this.$router.replace("login");
+    },
+    registerHandel() {
+      let regParams = {
+        username: this.formdata[0].value,
+        password: this.formdata[1].value,
+      };
+      this.$http.register(regParams, (res) => {
+        console.log(res);
+        if (!res.code) {
+          this.$toast.fail(res.msg);
+          return;
+        }
+        this.$dialog
+          .confirm({
+            title: "去登录",
+            message: "注册成功，是否前往登录",
+          })
+          .then(() => {
+            this.$router.replace("login");
+          })
+          .catch(() => {});
+      });
+    },
+  },
 };
 </script>
 
@@ -109,10 +168,16 @@ input {
   color: #fff;
   font: 18px/36px "Gigi";
 }
+.active {
+  color: #0072de;
+  transform: translateY(-16px) scale(0.7);
+  transition: transform 0.3s;
+}
 label {
   color: #fff;
   font: 14px/18px "Gigi";
   position: absolute;
+  transition: transform 0.3s;
   top: -1px;
   left: auto;
   max-width: 100%;
@@ -124,5 +189,15 @@ label {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.btn .van-button {
+  width: 152px;
+  height: 44px;
+  border-radius: 22px;
 }
 </style>

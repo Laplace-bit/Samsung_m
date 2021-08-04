@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './routers';
-import Vuex from 'vuex'
-
+import store from "./store/store"
 // 引入vant框架
 import Vant from 'vant';
 import 'vant/lib/index.css';
@@ -12,7 +11,6 @@ import {
 } from 'vant';
 Vue.use(Vant);
 Vue.use(Lazyload);
-Vue.use(Vuex)
 
 // 引入swiper
 import swiper from 'swiper';
@@ -25,6 +23,7 @@ Vue.config.productionTip = false
 
 
 new Vue({
+  store,
   router,
   render: h => h(App),
 }).$mount('#app')
