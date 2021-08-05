@@ -5,21 +5,42 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-         showPopupPart1: false,
+        detailReqID:{},
+        detailConfiguration:{},
+        detailColorList:[],
+        detailPicList:[],
+        detailSwiper: {},
+        detailBaseInfo:{},
+        showPopupPart1: false,
         showPopupPart2: false,
         count:0,
         showSku: false,
-        con:"5555"
     },
-    getters: {},
-    actions:{
-        setCityName({commit,state}, name){
-            commit("setCity", name);
+
+    getters: {
+        // 内存
+        storageInfo: state => {
+            if (!state.detailConfiguration.pdpSkuSpecInfoList) return
+            let storageArr = [];
+            state.detailConfiguration.pdpSkuSpecInfoList.forEach((item,index)=>{
+                if (index == 0) {
+                    storageArr = item.attrVal.split(',');
+                }
+            })
+            return storageArr
+        },
+    //   机型
+        goodsModel: state => {
+            if (!state.detailConfiguration.pdpSpuLinkGoodsInfoList) return
+            let modelArr = state.detailConfiguration.pdpSpuLinkGoodsInfoList;
+            return modelArr;
         }
     },
-    mutations:{
-        setCity(state, name){
-            state.city = name;
+    actions:{
+    },
+    mutations: {
+        getDetailId(state,id) {
+           state.detailReqID =id
         },
         ShowSku(state) {
             state.showSku = true;

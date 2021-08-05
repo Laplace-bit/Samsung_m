@@ -1,8 +1,8 @@
 <template>
   <div id="detailSku">
     <van-row class="firstRow">
-      <van-col span="5" offset="1">$5999</van-col>
-      <van-col span="18"><s>$6999</s></van-col>
+      <van-col span="6" offset="1">￥{{this.$store.state.detailBaseInfo.skuMinPrice}}</van-col>
+      <van-col span="17"><s>￥{{this.$store.state.detailBaseInfo.skuMaxPrice}}</s></van-col>
     </van-row>
     <van-row>
       <van-col span="5" offset="1">商城优势</van-col>
@@ -11,7 +11,7 @@
           <span data-v-f4320808=""
             ><img
               data-v-f4320808=""
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+              src=""
               class="fw_icon"
             />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
@@ -20,7 +20,7 @@
           ><span data-v-f4320808=""
             ><img
               data-v-f4320808=""
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+              :src="iconurl"
               class="fw_icon"
             />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
@@ -29,7 +29,7 @@
           ><span data-v-f4320808=""
             ><img
               data-v-f4320808=""
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+              :src="iconurl"
               class="fw_icon"
             />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
@@ -38,7 +38,7 @@
           ><span data-v-f4320808=""
             ><img
               data-v-f4320808=""
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+              :src="iconurl"
               class="fw_icon"
             />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
@@ -47,7 +47,7 @@
           ><span data-v-f4320808=""
             ><img
               data-v-f4320808=""
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+              :src="iconurl"
               class="fw_icon"
             />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
@@ -56,7 +56,7 @@
           ><span data-v-f4320808=""
             ><img
               data-v-f4320808=""
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+              :src="iconurl"
               class="fw_icon"
             />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
@@ -80,17 +80,18 @@
         </div>
       </van-col>
     </van-row>
-    <van-row>
+    <van-row class="model">
       <van-col span="5" offset="1">选择机型</van-col>
       <van-col span="18">
-        <van-button plain type="primary" color="#0075de" size="middle"
-          >朴cdasc素按钮</van-button
-        >
-        <van-button plain type="primary" color="#0075de" size="middle"
-          >朴dasvfsav素按钮</van-button
-        >
-        <van-button plain type="primary" color="#0075de" size="middle"
-          >朴dasvfsav素按钮</van-button
+        <van-button
+          plain
+          type="primary"
+          v-model="modelActive"
+          :color="modelActive == index ? '#0075de' : '#ccc'"
+          size="middle"
+          v-for="(item, index) in this.$store.getters.goodsModel"
+          :key="item.prodCd"
+          >{{ item.prodNm }}</van-button
         >
       </van-col>
     </van-row>
@@ -103,9 +104,16 @@
       </van-row>
       <van-row>
         <van-col span="23" offset="1">
-          <van-button plain type="primary" color="#0075de" size="middle"
-            >朴dasvfsav素按钮</van-button
-          >
+          <van-button
+            v-model="memoryActive"
+            plain
+            type="primary"
+            :color="memoryActive == index ? '#0075de' : '#ccc'"
+            size="middle"
+            v-for="(item1, index) in this.$store.getters.storageInfo"
+            :key="item1"
+            ><span v-html="item1"></span
+          ></van-button>
         </van-col>
       </van-row>
     </div>
@@ -117,29 +125,21 @@
         <van-col span="12"></van-col>
       </van-row>
       <van-row class="goodColor">
-        <van-col span="8">
+        <van-col
+          span="8"
+          v-for="(item, index) in this.$store.state.detailColorList"
+          :key="item.attrCd"
+        >
           <img
-            src="https://image.samsungeshop.com.cn/goods/20210411/729883c9666d4d84abcfbe2cc10196ea.jpg"
+            :src="item.imgUrl | imgUrlfilter"
             alt=""
+            :class="colorActive == index ? 'active' : ''"
           />
-          <div class="colorShow"></div>
-          <p>红</p>
-        </van-col>
-        <van-col span="8">
-          <img
-            src="https://image.samsungeshop.com.cn/goods/20210411/729883c9666d4d84abcfbe2cc10196ea.jpg"
-            alt=""
-          />
-          <div class="colorShow"></div>
-          <p>红</p>
-        </van-col>
-        <van-col span="8">
-          <img
-            src="https://image.samsungeshop.com.cn/goods/20210411/729883c9666d4d84abcfbe2cc10196ea.jpg"
-            alt=""
-          />
-          <div class="colorShow"></div>
-          <p>红</p>
+          <div
+            class="colorShow"
+            :style="{ backgroundColor: item.attrVal }"
+          ></div>
+          <p>{{ item.attrNm }}</p>
         </van-col>
       </van-row>
     </div>
@@ -147,7 +147,40 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    this.getColor();
+    this.getConfiguration();
+  },
+  data() {
+    return {
+      modelActive: 0,
+      memoryActive: 0,
+      colorActive: 0,
+      iconurl:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+    };
+  },
+  methods: {
+    // 颜色展示
+    getColor() {
+      this.$http.getColorInfo((res) => {
+        this.$store.state.detailColorList = res.data.pdpSkuImagesInfoList;
+      });
+    },
+    // 获取配置信息
+    getConfiguration() {
+      this.$http.getConfiguration((res) => {
+        this.$store.state.detailConfiguration = res.data;
+      });
+    },
+  },
+  // 图片地址过滤
+  filters: {
+    imgUrlfilter(val) {
+      return val.split(",")[0];
+    },
+  },
+};
 </script>
 <style scoped>
 .van-col--5 {
@@ -172,6 +205,21 @@ export default {};
 .firstRow {
   margin-top: 10px;
 }
+.firstRow .van-col--6 {
+  padding-left: 5%;
+  margin-top: 10px;
+  font-size: 6vw;
+  font-weight: 700;
+  color: #2189ff;
+  vertical-align: bottom;
+  margin: 0;
+}
+.firstRow .van-col--17 s {
+  font-size: 14px;
+  color: rgb(117, 117, 117);
+  text-decoration: line-through;
+  line-height: 8vw;
+}
 .van-row {
   padding: 10px 2px;
   border-top: 0.5px solid #ddd;
@@ -190,19 +238,30 @@ export default {};
 .Memory {
   margin-top: 10px;
 }
+.Memory .van-row {
+  border: none;
+}
 .Memory .van-button {
   padding: 18px;
   height: 60px;
   text-align: center;
   border-radius: 10px;
-  border: 1px solid #2189ff;
   font-size: 14px;
   margin-top: 10px;
   cursor: pointer;
+  margin-right: 20px;
+}
+.model .active {
+  border-color: #2189ff !important;
 }
 .color img {
   width: 78px;
   height: 78px;
+  box-sizing: border-box;
+}
+.color .active {
+  border: 1px solid #2189ff;
+  border-radius: 10px;
 }
 .goodColor .van-col {
   display: flex;
