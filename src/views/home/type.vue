@@ -35,8 +35,6 @@
                     this.menu = res.data.CTGICON.advInfos;
                     this.displayMenu = res.data.CTGICON.advInfos.splice(5, res.data.CTGICON.advInfos.length -
                         5);
-
-                    console.log(this.displayMenu);
                 })
             },
             handleScroll() {

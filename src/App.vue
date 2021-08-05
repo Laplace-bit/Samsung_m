@@ -14,6 +14,6 @@
 
 <style>
   .bgcolor {
-    background: #f7f7f7;
+    background: #f7f7f7 !important;
   }
 </style>

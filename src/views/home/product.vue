@@ -10,13 +10,14 @@
                 </div>
                 <div class="products-items">
                     <div class="products-items-1">
-                        <div class="products-item" v-for="(item1) in item.recSkuInfoList.slice(0, 4)"
-                            :key="item1.skuId">
+                        <van-cell class="products-item" v-for="(item1) in item.recSkuInfoList.slice(0, 4)"
+                            :key="item1.skuId"
+                            :to="`/detail/${item1.prodCd}/${item1.skuCd}`">
                             <a href="">
                                 <div>
                                     <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
                                 </div>
-                                <div class="product-item-t1">{{item1.skuTitl}}</div>
+                                <div class="product-item-t1 van-multi-ellipsis--l2">{{item1.skuTitl}}</div>
                                 <div class="product-item-t2" v-html="item1.skuSubTitl">
                                 </div>
                                 <div class="product-item-jg">
@@ -24,23 +25,25 @@
                                     <span class="product-yj">￥{{item1.origPr.toFixed(2)}}</span>
                                 </div>
                             </a>
-                        </div>
+                        </van-cell>
                     </div>
                     <div class="products-items-2">
                         <div class="swiper-container">
                             <div class="recommendPage">
                                 <swiper :options="swiperOption" ref="mySwiper">
                                     <swiper-slide v-for="(item1) in item.recSkuInfoList.slice(4)" :key="item1.skuId">
-                                        <div>
-                                            <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
-                                        </div>
-                                        <div class="product-item-t1">{{item1.skuTitl}}</div>
-                                        <div class="product-item-t2" v-html="item1.skuSubTitl">
-                                        </div>
-                                        <div class="product-item-jg">
-                                            <span class="miaosha-xj">￥{{item1.price.toFixed(2)}}</span>
-                                            <span class="product-yj">￥{{item1.origPr.toFixed(2)}}</span>
-                                        </div>
+                                        <van-cell :to="`/detail/${item1.prodCd}/${item1.skuCd}`">
+                                            <div>
+                                                <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
+                                            </div>
+                                            <div class="product-item-t1 van-multi-ellipsis--l2">{{item1.skuTitl}}</div>
+                                            <div class="product-item-t2" v-html="item1.skuSubTitl">
+                                            </div>
+                                            <div class="product-item-jg">
+                                                <span class="miaosha-xj">￥{{item1.price.toFixed(2)}}</span>
+                                                <span class="product-yj">￥{{item1.origPr.toFixed(2)}}</span>
+                                            </div>
+                                        </van-cell>
                                     </swiper-slide>
 
                                     <div class="swiper-pagination" slot="pagination"></div>
@@ -84,6 +87,7 @@
             getProductList() {
                 this.$http.getProductList(res => {
                     this.ProductList = res.data;
+                    console.log(this.ProductList);
                 })
             }
         },
@@ -96,8 +100,7 @@
             this.getProductList()
         },
         mouted() {
-            const mySwiper = new swiper('.swiper-container', {
-            })
+            const mySwiper = new swiper('.swiper-container', {})
 
         }
     }
@@ -175,8 +178,7 @@
     .product-item-t1 {
         font-size: 3.5vw;
         font-weight: 700;
-        line-height: 4.6vw;
-        margin-bottom: 1vw;
+        line-height: 5vw;
         height: 9vw;
         padding: 0 4vw;
 
@@ -184,7 +186,7 @@
 
     .product-item-t2 {
         font-size: 2.9vw;
-        height: 8.5vw;
+        height: 5.5vw;
         white-space: normal;
         word-wrap: break-word;
         display: -webkit-box;
@@ -193,6 +195,9 @@
         overflow: hidden;
         padding: 1.9vw 1.4vw;
         background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .product-item-jg {
@@ -246,7 +251,12 @@
     .swiper-button-next {
         right: -5px
     }
+
     .swiper-button-prev {
         left: -5px;
+    }
+
+    .van-cell__value {
+        text-align: center;
     }
 </style>

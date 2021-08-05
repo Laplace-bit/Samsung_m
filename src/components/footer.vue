@@ -19,5 +19,7 @@
 </script>
 
 <style>
-
+.van-tabbar{
+    z-index: 100;
+}
 </style>

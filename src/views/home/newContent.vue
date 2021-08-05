@@ -20,7 +20,7 @@
                     <div class="new-item-t1">
                         {{item.skuTitl}}
                     </div>
-                    <div class="new-item-t2">{{item.skuSubTitl}}</div>
+                    <div class="new-item-t2" v-html="item.skuSubTitl"></div>
                     <div class="new-item-jg">￥{{item.price.toFixed(2)}}</div>
                 </a>
             </li>
@@ -93,7 +93,7 @@
     }
 
     .new-left-pic .new-item-t2 {
-        font-size: 3.2vw;
+        font-size: 2.9vw;
     }
 
     .new-left-pic .new-item-jg {
@@ -139,6 +139,7 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        font-size: 2.9vw;
     }
 
     ul li .new-item-jg {

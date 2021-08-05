@@ -89,6 +89,12 @@ const HttpUtils = {
     async sortList(success){
         const {data:res}=await axios.get(`/api/product/index/navBar`)
         success(res)
+    },
+
+    // 获取页面列表
+    async getPageList(params,success){
+        const {data:res}=await axios.post(`/api/product/h5/plp/page`,params)
+        success(res)
     }
 
 }

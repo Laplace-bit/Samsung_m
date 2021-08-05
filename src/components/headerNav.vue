@@ -1,33 +1,28 @@
 <template>
     <van-popup closeable v-model="$store.state.showPopupPart1" position="right" :style="{ width: '90%' ,height:'100%'}"
         :lock-scroll="false">
-
-        <van-cell is-link @click="showPopup2(item.catgId)" v-for="(item,index) in headerNavList" :key="index">
-            {{item.catgKeywords}}
-        </van-cell>
-        <van-popup closeable v-model="$store.state.showPopupPart2" position="right"
-            :style="{ width: '100%' ,height:'100%'}" @close="closePart2?closePart2:''">
-            <h2>智能手机</h2>
-            <span class="back" @click="back">
-                <van-icon name="down" /></span>
-            <van-collapse v-model="activeName" accordion>
-                <van-collapse-item :title="item1.catgNm" :name="item1.catgId" v-for="(item1,index1) in headerNavList2"
-                    :key="index1">
-                    <div class="last" v-if="item1.spuInfoList">
-                        <a class="last lastItem" href="">全系列产品</a>
-                        <div class="last lastItem" v-for='(item2,index2) in item1.spuInfoList' :key="index2">
-                            {{item2.prodNm}}
+            <van-cell is-link @click="showPopup2(item.catgId)" v-for="(item,index) in headerNavList" :key="index">
+                {{item.catgKeywords}}
+            </van-cell>
+            <van-popup closeable v-model="$store.state.showPopupPart2" position="right"
+                :style="{ width: '100%' ,height:'100%'}" @close="closePart2?closePart2:''">
+                <h2>智能手机</h2>
+                <span class="back" @click="back">
+                    <van-icon name="down" /></span>
+                <van-collapse v-model="activeName" accordion>
+                    <van-collapse-item :title="item1.catgNm" :name="item1.catgId"
+                        v-for="(item1,index1) in headerNavList2" :key="index1">
+                        <div class="last" v-if="item1.spuInfoList">
+                            <a class="last lastItem" href="/sort">全系列产品</a>
+                            <van-cell class="last lastItem" v-for='(item2,index2) in item1.spuInfoList' :key="index2"
+                                :to="`detail/${item2.prodCd}`" @click="closeHeaderNav">
+                                {{item2.prodNm}}
+                            </van-cell>
                         </div>
-                    </div>
-                </van-collapse-item>
-
-            </van-collapse>
-
-
-        </van-popup>
-
+                    </van-collapse-item>
+                </van-collapse>
+            </van-popup>
     </van-popup>
-
 </template>
 
 <script>
@@ -60,12 +55,16 @@
                 })
             },
             closePart2() {
-                    this.$store.state.showPopupPart1 = false
+                this.$store.state.showPopupPart1 = false
 
             },
             back() {
                 this.$store.state.showPopupPart2 = false;
-                this.closePart2=null;
+                this.closePart2 = null;
+            },
+            closeHeaderNav() {
+                this.$store.state.showPopupPart2 = false;
+                this.$store.state.showPopupPart1 = false;
             }
         },
         created() {
@@ -84,7 +83,6 @@
     .van-cell--clickable {
         height: 56px;
         font-size: 20px;
-        font-weight: 700;
     }
 
     div /deep/.van-icon {
@@ -101,7 +99,6 @@
         font-size: 16px;
         vertical-align: middle;
         color: black;
-        /* padding: 0px; */
         padding-left: 1em;
     }
 
