@@ -20,7 +20,11 @@ export default {
   methods: {
     onClick(index) {
       console.log(index);
+      if(index==1){
+        window.scrollTo()
+      }
     },
+
   },
 };
 </script>
