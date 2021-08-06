@@ -15,6 +15,9 @@ export default new Vuex.Store({
         showPopupPart2: false,
         count:0,
         showSku: false,
+        searchValue:'',
+        list: [],
+        searchList:[]
     },
 
     getters: {
@@ -46,10 +49,11 @@ export default new Vuex.Store({
             state.showSku = true;
         },
         openHeaderNavPart1(state){
-            state.showPopupPart1=true
+            state.showPopupPart1=!state.showPopupPart1
         },
         openHeaderNavPart2(state){
-            state.showPopupPart2=true
+            state.showPopupPart2=!state.showPopupPart2
         },
     },
 })
+

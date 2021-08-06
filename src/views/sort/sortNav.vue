@@ -25,7 +25,6 @@
                     </van-grid-item>
                 </van-grid>
             </van-col>
-
         </van-row>
 
     </div>

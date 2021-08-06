@@ -28,7 +28,6 @@
     export default {
         data() {
             return {
-                value: 22
             }
         },
         methods: {

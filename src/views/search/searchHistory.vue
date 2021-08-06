@@ -3,7 +3,7 @@
         <div class="MiddLePageHistoty">
             <header>搜索历史</header>
             <van-row>
-                <van-col v-for="(item,index) in searchList" :key="index">{{item}}</van-col>
+                <van-col v-for="(item,index) in  this.$store.state.searchList" :key="index">{{item}}</van-col>
             </van-row>
         </div>
         <div class="MiddLePageHistoty">
@@ -18,7 +18,6 @@
 
 <script>
     export default {
-        props: ["searchList"],
         data() {
             return {}
         },
@@ -47,8 +46,11 @@
         border-radius: 6.66667vw;
         margin-right: 1.33333vw;
         margin-bottom: 1.33333vw;
-        text-align: center;
         font-size: 3.46667vw;
+        height: 6vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .MiddLePageHistoty:nth-child(2) {
