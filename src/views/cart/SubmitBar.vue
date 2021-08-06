@@ -24,7 +24,9 @@ export default {
     changeAll() {
       this.$store.commit("changeAllChecked");
     },
-    onSubmit() {},
+    onSubmit() {
+      this.$store.commit("removeData")
+    }
   },
 };
 </script>

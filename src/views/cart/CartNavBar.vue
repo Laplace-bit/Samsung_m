@@ -2,7 +2,7 @@
   <van-nav-bar
     title="购物车"
     left-text=""
-    right-text="编辑"
+    right-text=""
     left-arrow
     @click-left="onClickLeft"
     @click-right="onClickRight"

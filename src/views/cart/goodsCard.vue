@@ -24,7 +24,10 @@
       </template>
       <template #num>
         <div class="btngroul">
-          <van-icon name="minus" @click="reduce(item.goods_id)" />
+          <van-icon
+            name="minus"
+            @click="reduce(item.goods_id)"
+          />
           <span>{{ item.goodsNum }}</span>
           <van-icon name="plus" @click="increase(item.goods_id)" />
         </div>

@@ -56,6 +56,9 @@ export default new Vuex.Store({
     actions:{
     },
     mutations: {
+        removeData(state) {
+            state.userCartData = state.userCartData.filter(item => !item.isSelect)
+        },
         // 更新数量
         updateNumAdd(state, id) {
             state.userCartData.forEach(item => {
@@ -68,6 +71,9 @@ export default new Vuex.Store({
             state.userCartData.forEach(item => {
                 if (item.goods_id == id) {
                     item.goodsNum--
+                    if (item.goodsNum <= 1) {
+                        item.goodsNum = 1
+                    }
                 }
             })
         },
