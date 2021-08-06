@@ -2,27 +2,25 @@
     <div class="New-content">
         <div class="hot-title">新品区</div>
         <div class="new-list">
-            <div class="new-left-pic">
-                <a href="">
-                    <img v-if="newLeftPic" :src="newLeftPic.skuImg" alt="">
-                </a>
-                <div class="new-item-t1">
+            <van-cell class="new-left-pic" :to="`detail/${newLeftPic.prodCd}/${newLeftPic.goodsNm}`">
+                <img v-if="newLeftPic" :src="newLeftPic.skuImg" alt="">
+                <div class="new-item-t1 van-multi-ellipsis--l2">
                     {{newLeftPic.skuTitl}}
                 </div>
                 <div class="new-item-t2">{{newLeftPic.skuSubTitl}}</div>
                 <div class="new-item-jg">￥{{Number(newLeftPic.price).toFixed(2)}}</div>
-            </div>
+            </van-cell>
         </div>
         <ul>
             <li v-for="(item) in newDateList" :key="item.skuId">
-                <a href="">
+                <van-cell :to="`detail/${item.prodCd}/${item.goodsNm}`">
                     <div class="new-item-img"><img :src="item.skuImg" alt=""></div>
-                    <div class="new-item-t1">
+                    <div class="new-item-t1 van-multi-ellipsis--l2">
                         {{item.skuTitl}}
                     </div>
                     <div class="new-item-t2" v-html="item.skuSubTitl"></div>
                     <div class="new-item-jg">￥{{item.price.toFixed(2)}}</div>
-                </a>
+                </van-cell>
             </li>
         </ul>
     </div>
@@ -80,7 +78,7 @@
         background-color: white;
     }
 
-    .new-left-pic a {
+    .new-left-pic img {
         display: inline-block;
         width: 63.3vw;
         height: 63.3vw;
@@ -134,12 +132,13 @@
 
     ul li .new-item-t2 {
         white-space: normal;
-        word-wrap: break-word;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         overflow: hidden;
         font-size: 2.9vw;
+        height: 28px;
     }
 
     ul li .new-item-jg {
@@ -152,4 +151,9 @@
     a {
         color: #000
     }
+
+    .van-cell__value {
+        text-align: center;
+    }
+
 </style>

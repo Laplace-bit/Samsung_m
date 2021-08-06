@@ -3,20 +3,15 @@
         <div class="main-content" v-for="item in ProductList" :key="item.catgCd">
             <div class=" products-t">{{item.catgKeywords}} <span>查看更多</span></div>
             <div class="product-list">
-                <div class="products-ad">
-                    <a href="">
+                <van-cell class="products-ad" :to="`sort`">
                         <img :src="item.adInfoH5.top.adPic" alt="">
-                    </a>
-                </div>
+                </van-cell>
                 <div class="products-items">
                     <div class="products-items-1">
                         <van-cell class="products-item" v-for="(item1) in item.recSkuInfoList.slice(0, 4)"
-                            :key="item1.skuId"
-                            :to="`/detail/${item1.prodCd}/${item1.skuCd}`">
+                            :key="item1.skuId" :to="`/detail/${item1.prodCd}/${item1.skuCd}`">
                             <a href="">
-                                <div>
-                                    <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
-                                </div>
+                                <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
                                 <div class="product-item-t1 van-multi-ellipsis--l2">{{item1.skuTitl}}</div>
                                 <div class="product-item-t2" v-html="item1.skuSubTitl">
                                 </div>
@@ -33,9 +28,7 @@
                                 <swiper :options="swiperOption" ref="mySwiper">
                                     <swiper-slide v-for="(item1) in item.recSkuInfoList.slice(4)" :key="item1.skuId">
                                         <van-cell :to="`/detail/${item1.prodCd}/${item1.skuCd}`">
-                                            <div>
-                                                <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
-                                            </div>
+                                            <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
                                             <div class="product-item-t1 van-multi-ellipsis--l2">{{item1.skuTitl}}</div>
                                             <div class="product-item-t2" v-html="item1.skuSubTitl">
                                             </div>
@@ -129,6 +122,7 @@
     }
 
     .products-ad {
+        padding: 0px;
         width: 100%;
         text-align: center;
         border-radius: 2.7vw;
@@ -136,13 +130,7 @@
         margin-bottom: 2vw
     }
 
-    .products-ad a {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    .products-ad a img {
+    .products-ad  img {
         width: 100%;
         height: 100%;
     }
@@ -164,6 +152,9 @@
     }
 
     .products-item-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 25.33vw;
         height: 25.33vw;
         margin: 1.2vw 9.73vw 2.4vw 9.73vw;
@@ -257,6 +248,10 @@
     }
 
     .van-cell__value {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
     }
 </style>

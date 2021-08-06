@@ -92,6 +92,7 @@
     div /deep/.van-cell {
         height: 56px;
         font-size: 18px;
+        line-height: 36px;
     }
 
     .last {
@@ -132,4 +133,6 @@
         font-size: 24px;
         transform: rotate(90deg);
     }
+
+
 </style>
