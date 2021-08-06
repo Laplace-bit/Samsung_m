@@ -51,7 +51,7 @@ const routes = [
         },
     },
     // 详情页
-    {path:'/detail/:id/:longid',name:'detail',component:Detail},
+    {path:`/detail/:id/:longId`,component:Detail},
 
     { path:'/search',component:Search},
     {path:'/sort',component:Sort}

@@ -163,13 +163,13 @@ export default {
   methods: {
     // 颜色展示
     getColor() {
-      this.$http.getColorInfo((res) => {
+      this.$http.getColorInfo(this.$route.params,(res) => {
         this.$store.state.detailColorList = res.data.pdpSkuImagesInfoList;
       });
     },
     // 获取配置信息
     getConfiguration() {
-      this.$http.getConfiguration((res) => {
+      this.$http.getConfiguration(this.$route.params,(res) => {
         this.$store.state.detailConfiguration = res.data;
       });
     },

@@ -97,35 +97,35 @@ const HttpUtils = {
         success(res)
     },
     // 详情页
-    async getDetailSw(success) {
-        const { data: res } = await axios.get('/api/product/h5/pdp/leftSkuInfo/SM-G7810ZBGCHC')
+    async getDetailSw(params,success) {
+        const { data: res } = await axios.get(`/api/product/h5/pdp/leftSkuInfo/${params.longId}`)
         success(res)
     },
     // 详情页商品信息
-    async getBaseInfo(success) {
-        const { data: res } = await axios.get('/api/product/pdp/baseInfo/SM-G7810/SM-G7810ZBGCHC')
+    async getBaseInfo(params,success) {
+        const { data: res } = await axios.get(`/api/product/pdp/baseInfo/${params.id}/${params.longId}`)
         success(res)
     },
     // 详情页图片列表
-    async getPicInfo(success) {
-        const { data: res } = await axios.get('/api/product/pdp/bottom/detailInfo/SM-G7810')
+    async getPicInfo(params,success) {
+        const { data: res } = await axios.get(`/api/product/pdp/bottom/detailInfo/${params.id}`)
         success(res)
     },
     // 详情页商品颜色
-     async getColorInfo(success) {
-        const { data: res } = await axios.get('/api/product/h5/pdp/leftInfo/SM-G7810')
+     async getColorInfo(params,success) {
+        const { data: res } = await axios.get(`/api/product/h5/pdp/leftInfo/${params.id}`)
         success(res)
     },
     //  详情配置
     //  //www.samsungeshop.com.cn/api/product/pdp/right/inInfo/SM-G7810
-      async getConfiguration(success) {
-        const { data: res } = await axios.get('/api/product/pdp/right/inInfo/SM-G7810')
+      async getConfiguration(params,success) {
+        const { data: res } = await axios.get(`/api/product/pdp/right/inInfo/${params.id}`)
         success(res)
     },
     // 加入购物车
-    async addCart(params,success) {
+    async addCart(params, success) {
         const { data: res } = await axios({
-            url: "/userapi/addCartData.php",
+            url: "/userapi/addCarData.php",
             method: 'post',
             headers: {
                 'Content-Type':'application/x-www-form-urlencoded'
@@ -140,13 +140,59 @@ const HttpUtils = {
             data: {
                 tel: params.username,
                 goods_id:params.goods_id,
-                is_select:params.is_select,
+                is_select: false,
+                price:1,
+            }
+        })
+        success(res);
+    },
+    // 更新购物车
+    async updateCart(params, success) {
+        const { data: res } = await axios({
+            url: "/userapi/updCarData.php",
+            method: 'get',
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                let ret = '';
+                for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it])+'&'
+                }
+                return ret;
+            }],
+            params: {
+                tel: params.username,
+                goods_id: params.goods_id,
+                goods_num:params.goods_num*1,
+            }
+        })
+        success(res);
+    },
+    // 获取购物车用户ID
+    async getCartId(params, success) {
+        const { data: res } = await axios({
+            url: "/userapi/getCarData.php",
+            method: 'get',
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                let ret = '';
+                for (let it in data) {
+                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it])+'&'
+                }
+                return ret;
+            }],
+            params: {
+                tel: params.username,
             }
         })
         success(res);
     },
 
-    
+
+
 
 }
 export default HttpUtils;

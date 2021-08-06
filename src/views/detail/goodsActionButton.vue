@@ -26,19 +26,21 @@ export default {
       reqDate: "",
     };
   },
-  created() {
-    this.reqDate = this.$route.query;
-  },
+  created() {},
   methods: {
     addCart() {
+      if (!this.getCookie("login")) {
+        this.$toast.fail("请登录后重新尝试~");
+        return;
+      }
       let param = {
         username: this.getCookie("login"),
-        goods_id: this.reqDate,
-        is_select: false,
+        goods_id: `${this.$route.params.id}/${this.$route.params.longId}`,
       };
 
       this.$http.addCart(param, (res) => {
-        if (res.code != 200) {
+        console.log(res);
+        if (res.code) {
           this.$toast.fail("添加失败，请重新尝试~");
           return;
         }

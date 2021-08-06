@@ -1,36 +1,32 @@
 <template>
   <div id="goodCard">
     <van-card
-      num="2"
-      price="2.00"
-      origin-price="10.00"
-      title="商品标题"
-      thumb="https://img01.yzcdn.cn/vant/ipad.jpeg"
+      :num="item.goodsNum"
+      :price="item.minPrice"
+      :origin-price="item.maxPrice"
+      :title="item.skuNm"
+      :thumb="imgArr[index] | imgfilter"
+      v-for="(item, index) in this.$store.state.userCartData"
     >
       <template #desc>
-        <van-button plain type="default" size="mini" @click="openSku"
-          >规格</van-button
-        >
-      </template>
-      <template #tags>
-        <div class="tags">
-          <span>领取优惠券</span>
-          <van-icon name="arrow" size="16" />
-        </div>
+        <van-button plain type="default" size="mini" @click="openSku">{{
+          item.skuNm | Specifications
+        }}</van-button>
       </template>
       <template #tag>
         <van-checkbox
-          v-model="checked"
-          checked-color="#ee0a24"
+          v-model="item.isSelect"
+          checked-color="#0075de"
           shape="square"
           icon-size="16px"
+          @click="changeChecked(index)"
         ></van-checkbox>
       </template>
       <template #num>
         <div class="btngroul">
-          <van-icon name="minus" @click="increase" />
-          <span>{{ cont }}</span>
-          <van-icon name="plus" @click="reduce" />
+          <van-icon name="minus" @click="reduce(item.goods_id)" />
+          <span>{{ item.goodsNum }}</span>
+          <van-icon name="plus" @click="increase(item.goods_id)" />
         </div>
       </template>
       <GoodsSku></GoodsSku>
@@ -42,19 +38,77 @@ import GoodsSku from "./GoodsSku.vue";
 export default {
   data() {
     return {
+      imgArr: [],
+      CartRes: [],
+      user: "",
       cont: this.$store.state.showSku,
       checked: false,
     };
   },
+  filters: {
+    Specifications(val) {
+      if (!val) return;
+      let arr = val.split(" ");
+      return arr[arr.length - 1];
+    },
+    imgfilter(val) {
+      if (!val) return;
+      return val.split(",")[0];
+    },
+  },
   created() {
-    this.getCartList();
+    this.user = this.getCookie("login");
+    this.$http.getCartId({ username: this.user }, (res) => {
+      this.$store.commit("updateUserCart", res);
+      this.makeData();
+    });
   },
   methods: {
-    getCartList() {},
-    increase() {},
-    reduce() {},
+    changeChecked(id) {
+      this.$store.commit("changeChecked", id);
+    },
+    makeData() {
+      this.$store.state.userCart.forEach((item, index) => {
+        let id = item.goods_id.split("/")[0];
+        let longId = item.goods_id.split("/")[1];
+        let obj = {};
+        this.$http.getBaseInfo({ id: id, longId: longId }, (res) => {
+          this.CartRes.push({
+            skuNm: res.data.skuNm,
+            maxPrice: res.data.skuMaxPrice,
+            minPrice: res.data.skuMinPrice,
+            goodsNum: item.goods_num * 1,
+            goods_id: item.goods_id,
+            isSelect: false,
+          });
+        });
+        this.$http.getColorInfo({ id: id, longId: longId }, (res) => {
+          let imgUrl = res.data.pdpSkuImagesInfoList[0].imgUrl;
+          this.imgArr.push(imgUrl);
+        });
+      });
+      this.$store.commit("updateUserCartData", this.CartRes);
+    },
+    increase(id) {
+      this.$store.commit("updateNumAdd", id);
+    },
+    reduce(id) {
+      this.$store.commit("updateNumReduce", id);
+    },
     openSku() {
       this.$store.commit("ShowSku");
+    },
+    // 获取cookie
+    getCookie(key) {
+      let c = document.cookie;
+      let arr = c.split("; ");
+      let obj = {};
+      arr.forEach((item) => {
+        let a = item.split("=");
+        obj[a[0]] = a[1];
+      });
+      if (key) return obj[key];
+      return obj;
     },
   },
   components: {
