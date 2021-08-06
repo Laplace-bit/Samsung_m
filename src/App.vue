@@ -5,15 +5,15 @@
 </template>
 
 <script>
-  export default {
-    name: "App",
-    model: "history",
-    components: {},
-  };
+export default {
+  name: "App",
+  model: "history",
+  components: {},
+};
 </script>
 
 <style>
-  .bgcolor {
-    background: #f7f7f7 !important;
-  }
+.bgcolor {
+  background: #f7f7f7 !important;
+}
 </style>

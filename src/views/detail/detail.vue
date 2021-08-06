@@ -35,6 +35,16 @@ export default {
     // 获取id
     this.$store.commit("getDetailId", this.$route.params);
   },
+  watch: {
+    $route(to, from) {
+      this.$store.commit("getDetailId", this.$route.params);
+      this.getSwiperData();
+      this.getDetailBaseInfo();
+    },
+  },
+  updated() {
+    document.documentElement.scrollTop = 0;
+  },
   methods: {
     onBack() {
       this.$router.back();

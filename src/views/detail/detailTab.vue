@@ -20,11 +20,13 @@ export default {
   methods: {
     onClick(index) {
       console.log(index);
-      if(index==1){
-        window.scrollTo()
+      if (index == 0) {
+        document.documentElement.scrollTop = 0;
+      }
+      if (index == 1) {
+        document.documentElement.scrollTop = "500";
       }
     },
-
   },
 };
 </script>

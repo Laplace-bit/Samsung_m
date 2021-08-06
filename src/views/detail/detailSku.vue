@@ -1,64 +1,44 @@
 <template>
   <div id="detailSku">
     <van-row class="firstRow">
-      <van-col span="6" offset="1">￥{{this.$store.state.detailBaseInfo.skuMinPrice}}</van-col>
-      <van-col span="17"><s>￥{{this.$store.state.detailBaseInfo.skuMaxPrice}}</s></van-col>
+      <van-col span="6" offset="1"
+        >￥{{ this.$store.state.detailBaseInfo.skuMinPrice }}</van-col
+      >
+      <van-col span="17"
+        ><s>￥{{ this.$store.state.detailBaseInfo.skuMaxPrice }}</s></van-col
+      >
     </van-row>
     <van-row>
       <van-col span="5" offset="1">商城优势</van-col>
       <van-col span="18" class="advantage">
         <div data-v-f4320808="" class="pdp-product-yh-v">
           <span data-v-f4320808=""
-            ><img
-              data-v-f4320808=""
-              src=""
-              class="fw_icon"
-            />
+            ><img data-v-f4320808="" src="" class="fw_icon" />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
               >以旧换新</span
             ></span
           ><span data-v-f4320808=""
-            ><img
-              data-v-f4320808=""
-              :src="iconurl"
-              class="fw_icon"
-            />
+            ><img data-v-f4320808="" :src="iconurl" class="fw_icon" />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
               >分期0利率</span
             ></span
           ><span data-v-f4320808=""
-            ><img
-              data-v-f4320808=""
-              :src="iconurl"
-              class="fw_icon"
-            />
+            ><img data-v-f4320808="" :src="iconurl" class="fw_icon" />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
               >管家服务</span
             ></span
           ><span data-v-f4320808=""
-            ><img
-              data-v-f4320808=""
-              :src="iconurl"
-              class="fw_icon"
-            />
+            ><img data-v-f4320808="" :src="iconurl" class="fw_icon" />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
               >7天无理由退货</span
             ></span
           ><span data-v-f4320808=""
-            ><img
-              data-v-f4320808=""
-              :src="iconurl"
-              class="fw_icon"
-            />
+            ><img data-v-f4320808="" :src="iconurl" class="fw_icon" />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
               >官方正品</span
             ></span
           ><span data-v-f4320808=""
-            ><img
-              data-v-f4320808=""
-              :src="iconurl"
-              class="fw_icon"
-            />
+            ><img data-v-f4320808="" :src="iconurl" class="fw_icon" />
             <span data-v-f4320808="" class="pdp-product-yh-txt samsungColor"
               >免费包邮</span
             ></span
@@ -91,6 +71,8 @@
           size="middle"
           v-for="(item, index) in this.$store.getters.goodsModel"
           :key="item.prodCd"
+          @click="goto(item.prodCd, index)"
+          :to="`/detail/${item.prodCd}`"
           >{{ item.prodNm }}</van-button
         >
       </van-col>
@@ -112,6 +94,7 @@
             size="middle"
             v-for="(item1, index) in this.$store.getters.storageInfo"
             :key="item1"
+            @click="ccc(index)"
             ><span v-html="item1"></span
           ></van-button>
         </van-col>
@@ -134,6 +117,7 @@
             :src="item.imgUrl | imgUrlfilter"
             alt=""
             :class="colorActive == index ? 'active' : ''"
+            @click="changeImg(index)"
           />
           <div
             class="colorShow"
@@ -157,20 +141,33 @@ export default {
       modelActive: 0,
       memoryActive: 0,
       colorActive: 0,
-      iconurl:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII="
+      iconurl:
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAMAAABhEH5lAAAAhFBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEFBQUJCQkODg4QEBATExMVFRUeHh46Ojo/Pz9JSUlZWVlaWlpqampra2t3d3d9fX2QkJCRkZGgoKC1tbW3t7fDw8PU1NTY2Njh4eHl5eXn5+f19fX6+vr9/f3+/v7///8rw5LlAAAACnRSTlMAJD1DmZq/1+3yE/35XQAAAJFJREFUGNNtkEcWgzAQQ0UMGP/03nsDfP/7ZWFCyvPfjRYaSZIkmdQ6Z1OjN0lOQ54EpVPQUnQkKflSoEgk5fyQS4Y/jLLPsXnMgEwWGA0AVnU5BawccL9NYFFVSwAnBxz8dTwv6zVBskDv6C9Pvw2ONtj3z97vmidpE2J42nfbEJGosUKR2rFxJJnMOmezMOELZn4MwJNL3HYAAAAASUVORK5CYII=",
     };
   },
   methods: {
+    changeImg(i) {
+      this.colorActive = i;
+    },
+    ccc(i) {
+      this.memoryActive = i;
+    },
+    goto(path, i) {
+      this.modelActive = i;
+      // this.$router.replace(`/detail/${path}`);
+      this.$forceUpdate();
+    },
     // 颜色展示
     getColor() {
-      this.$http.getColorInfo(this.$route.params,(res) => {
+      this.$http.getColorInfo(this.$route.params, (res) => {
         this.$store.state.detailColorList = res.data.pdpSkuImagesInfoList;
       });
     },
     // 获取配置信息
     getConfiguration() {
-      this.$http.getConfiguration(this.$route.params,(res) => {
+      this.$http.getConfiguration(this.$route.params, (res) => {
         this.$store.state.detailConfiguration = res.data;
+        console.log(res.data);
       });
     },
   },
