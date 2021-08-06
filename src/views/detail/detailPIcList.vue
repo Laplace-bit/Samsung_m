@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     getPicList() {
-      this.$http.getPicInfo((res) => {
+      this.$http.getPicInfo(this.$route.params,(res) => {
         this.$store.state.detailPicList =
           res.data.pdpspuDetailImagesInfoList.filter((item) => {
             return item.chCd === "2";
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style scoped>
-/deep/.van-collapse-item__content {
+div /deep/.van-collapse-item__content {
   padding: 0;
 }
 .van-collapse-item__content img {

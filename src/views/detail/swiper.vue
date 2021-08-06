@@ -19,7 +19,10 @@ export default {};
   text-align: center;
   background-color: #fff;
 }
-.my-swipe .van-swipe-item img{
+.my-swipe .van-swipe-item img {
   width: 100%;
+}
+.van-swipe {
+  height: auto !important;
 }
 </style>

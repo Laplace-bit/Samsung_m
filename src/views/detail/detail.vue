@@ -2,7 +2,7 @@
   <div id="detail">
     <van-row>
       <van-col span="2">
-        <van-icon name="arrow-left" size="30px" />
+        <van-icon name="arrow-left" size="30px" @click="onBack" />
       </van-col>
       <van-col span="22">
         <template>
@@ -33,20 +33,19 @@ export default {
     this.getSwiperData();
     this.getDetailBaseInfo();
     // 获取id
-    let params = {
-      proCd: this.$route.query.proCd,
-      id: this.$route.query.proCd.split("/")[0],
-    };
-    this.$store.commit("getDetailId", params);
+    this.$store.commit("getDetailId", this.$route.params);
   },
   methods: {
+    onBack() {
+      this.$router.back();
+    },
     getSwiperData() {
-      this.$http.getDetailSw((res) => {
+      this.$http.getDetailSw(this.$route.params, (res) => {
         this.$store.state.detailSwiper = res.data;
       });
     },
     getDetailBaseInfo() {
-      this.$http.getBaseInfo((res) => {
+      this.$http.getBaseInfo(this.$route.params, (res) => {
         this.$store.state.detailBaseInfo = res.data;
       });
     },

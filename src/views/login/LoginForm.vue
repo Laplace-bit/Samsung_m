@@ -112,7 +112,7 @@ export default {
 .van-field {
   height: 48px;
 }
-/deep/.van-field__error-message {
+div /deep/.van-field__error-message {
   text-align: right;
   position: absolute;
   top: 0;
