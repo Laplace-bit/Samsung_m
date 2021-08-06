@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
         <van-sticky>
             <van-sidebar v-model="activeKey" @change="onChange">
                 <van-sidebar-item :title="item.catgNm" v-for="item in  catData" :key="item.catgId" v-lazy="item" />
@@ -18,7 +18,8 @@
             <van-col span="24">
                 <van-grid :border="false" :column-num="2" v-for="item1 in ListData" :key="item1.catgId" v-lazy="item1">
                     <div class="header">{{item1.catgNm}}</div>
-                    <van-grid-item v-for="item2 in item1.spuInfoList" :key="item2.index" :to="`/detail/${item2.prodCd}`">
+                    <van-grid-item v-for="item2 in item1.spuInfoList" :key="item2.index"
+                        :to="`/detail/${item2.prodCd}`">
                         <van-image :src="item2.skuImg" />
                         <div class="text">{{item2.prodTitl}}</div>
                     </van-grid-item>
@@ -167,11 +168,27 @@
         border-radius: 2.7vw
     }
 
+    .van-sidebar {
+        border-radius: 0px;
+        padding-top: 1vw;
+    }
+
+    .van-sidebar-item {
+        margin: 0 1vw 1vw 1vw;
+        border-radius: 10px;
+        background-color: white;
+    }
+
     .van-sidebar-item--select::before {
         background-color: white;
     }
 
     .van-sidebar-item--select {
         color: #007aff;
+    }
+
+    .main {
+        height: 100%;
+        background: #f7f8fa;
     }
 </style>

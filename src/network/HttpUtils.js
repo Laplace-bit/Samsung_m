@@ -123,7 +123,7 @@ const HttpUtils = {
         success(res)
     },
     // 加入购物车
-    async login(params,success) {
+    async addCart(params,success) {
         const { data: res } = await axios({
             url: "/userapi/addCartData.php",
             method: 'post',
@@ -145,6 +145,8 @@ const HttpUtils = {
         })
         success(res);
     },
+
+    
 
 }
 export default HttpUtils;

@@ -9,7 +9,7 @@
                 <van-button type="default" to="/search">
                     <van-icon name="search" />
                 </van-button>
-                <van-button type="default">
+                <van-button type="default"  to="/cart">
                     <van-icon name="shopping-cart-o" />
                 </van-button>
                 <van-button type="default" @click="showPopup">

@@ -9,23 +9,28 @@
             </van-col>
             <van-col span="23">
                 <van-search shape="round" v-model="value" show-action placeholder="请输入搜索词" left-icon="null"
-                    @input="onSearch" @clear="clear">
+                    @input="onSearch" @clear="clear" @search="reallySearch">
                     <template #action>
-                        <div @click="onSearch">搜索</div>
+                        <div @click="reallySearch">搜索</div>
                     </template>
                 </van-search>
                 <van-list>
-                    <i class="sanxiaojing" v-if="list[0]"></i>
+                    <i class="sanjiaojing" v-if="list[0]"></i>
                     <van-cell v-for="item in list" :key="item" :title="item" />
                 </van-list>
             </van-col>
         </van-row>
-
+        <searchMain />
+        <searchHistory :searchList="searchList" />
+        <homeFoot />
     </div>
 </template>
 
 <script>
     import headerbar from '../../components/header.vue';
+    import homeFoot from '../home/homeFoot.vue';
+    import searchMain from './searchMain.vue'
+    import searchHistory from './searchHistory.vue';
     export default {
         data() {
             return {
@@ -33,6 +38,7 @@
                 list: [],
                 loading: false,
                 finished: false,
+                searchList: []
             }
         },
         methods: {
@@ -45,12 +51,34 @@
                     return;
                 }
             },
-            clear(){
-                this.list=[]
+            clear() {
+                this.list = []
+            },
+            getSearchList() {
+                this.searchList = JSON.parse(localStorage.getItem('middlePageKeyWords'))
+            },
+            reallySearch() {
+                this.searchList = JSON.parse(localStorage.getItem('middlePageKeyWords'))
+                if (!this.searchList) {
+                    this.searchList = [this.value];
+                    localStorage.setItem('middlePageKeyWords', JSON.stringify(this.searchList));
+                } else if (this.searchList.indexOf(this.value) == -1) {
+                    this.searchList.unshift(this.value);
+                    localStorage.setItem('middlePageKeyWords', JSON.stringify(this.searchList));
+                } else {
+                    console.log('該值存在');
+                }
+
             }
         },
         components: {
-            headerbar
+            headerbar,
+            homeFoot,
+            searchHistory,
+            searchMain
+        },
+        created() {
+            this.getSearchList()
         }
     }
 </script>
@@ -94,7 +122,11 @@
         padding: 0 16px;
     }
 
-    .sanxiaojing {
+    .van-search__action div {
+        color: #228aff;
+    }
+
+    .sanjiaojing {
         position: absolute;
         left: 40px;
         top: -17px;
@@ -103,7 +135,7 @@
     }
 
     .van-list {
-        position: relative;
+        position: absolute;
         width: 74vw;
         margin-left: 6vw;
         box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);

@@ -3,22 +3,22 @@
         <div class="hot-title">热销推荐</div>
         <div class="hot-list">
             <div class="hot-item">
-                <a href="#">
+                <van-cell :to="`sort`">
                     <img src="https://image.samsungeshop.com.cn/goods/20210730/db114edd796e46e6ab3ff7bc3b879c2e.png"
                         alt="">
-                </a>
+                </van-cell>
             </div>
             <div class="hot-item">
-                <a href="#">
+                <van-cell :to="`sort`">
                     <img src="https://image.samsungeshop.com.cn/goods/20210619/179c2f630bf84bc78879943fd774c3f9.png"
                         alt="">
-                </a>
+                </van-cell>
             </div>
             <div class="hot-item">
-                <a href="#">
+                <van-cell :to="`sort`">
                     <img src="https://image.samsungeshop.com.cn/goods/20210619/3693a02282704df196aa5973de2882f0.png"
                         alt="">
-                </a>
+                </van-cell>
             </div>
         </div>
     </div>
@@ -56,5 +56,8 @@
     img{
         width: 100%;
         height: 100%;
+    }
+    .van-cell,.van-cell__value{
+        padding: 0px;
     }
 </style>
