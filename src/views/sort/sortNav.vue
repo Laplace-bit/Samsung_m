@@ -5,6 +5,7 @@
                 <van-sidebar-item :title="item.catgNm" v-for="item in  catData" :key="item.catgId" v-lazy="item" />
             </van-sidebar>
         </van-sticky>
+
         <!-- 遮罩层 -->
         <div v-if="show">
             <van-overlay :show="show" @click="show = false">
@@ -63,6 +64,7 @@
                 this.ListData = this.catData[idx].categoryInfoList;
                 this.getPage.catgLvlOneCd = this.catData[idx].catgCd
                 console.log(this.ListData);
+                
                 this.$http.getPageList(this.getPage, res => {
                     this.pageData = res.data.pageData;
                     this.ListData.forEach(item => {

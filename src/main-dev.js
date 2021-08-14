@@ -4,8 +4,8 @@ import router from './routers';
 import store from "./store/store"
 
 // 引入vant框架
-import Vant from 'vant';
-import 'vant/lib/index.css';
+  import Vant from 'vant';
+  import 'vant/lib/index.css';
 
 import {
   Lazyload

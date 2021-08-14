@@ -32,7 +32,7 @@
         },
         methods: {
             showPopup() {
-                this.$store.commit('openHeaderNavPart1')
+                this.$store.commit('openHeaderNavPart1',true)
                 
             },
         },

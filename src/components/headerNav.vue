@@ -1,11 +1,11 @@
 <template>
     <van-popup closeable v-model="$store.state.showPopupPart1" position="right" :style="{ width: '90%' ,height:'100%'}"
-        :lock-scroll="false">
+        :lock-scroll="false" @close="closePart1">
         <van-cell is-link @click="showPopup2(item.catgId)" v-for="(item,index) in headerNavList" :key="index">
             {{item.catgKeywords}}
         </van-cell>
         <van-popup closeable v-model="$store.state.showPopupPart2" position="right"
-            :style="{ width: '100%' ,height:'100%'}" @close="closePart2?closePart2:''">
+            :style="{ width: '100%' ,height:'100%'}" @close="closePart2">
             <h2>智能手机</h2>
             <span class="back" @click="back">
                 <van-icon name="down" /></span>
@@ -41,11 +41,10 @@
         },
         methods: {
             showPopup2(id) {
-                this.$store.commit('openHeaderNavPart2')
+                this.$store.commit('openHeaderNavPart2', true)
                 // 获取导航列表数据
                 if (id) {
                     this.headerNavList2 = this.headerNavList.filter(item => item.catgId == id)[0].categoryInfoList;
-                    console.log(this.headerNavList2);
                 }
                 return
             },
@@ -54,16 +53,22 @@
                     this.headerNavList = res.data
                 })
             },
+            closePart1() {
+                this.$store.commit('openHeaderNavPart1', false)
+            },
             closePart2() {
-                this.$store.state.showPopupPart1 = false
+                this.$store.commit('openHeaderNavPart2', false)
+                this.$store.commit('openHeaderNavPart1', false)
             },
             back() {
-                this.$store.state.showPopupPart2 = false;
-                this.closePart2 = null;
+                this.$store.commit('openHeaderNavPart2', false);
+                setTimeout(() => {
+                    this.$store.commit('openHeaderNavPart1', true)
+                }, 1)
             },
             closeHeaderNav() {
-                this.$store.state.showPopupPart2 = false;
-                this.$store.state.showPopupPart1 = false;
+                this.$store.commit('openHeaderNavPart2', false)
+                this.$store.commit('openHeaderNavPart1', false)
             }
         },
         created() {

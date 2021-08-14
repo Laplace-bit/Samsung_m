@@ -4,12 +4,12 @@
             <div class=" products-t">{{item.catgKeywords}} <span>查看更多</span></div>
             <div class="product-list">
                 <van-cell class="products-ad" :to="`sort`">
-                        <img :src="item.adInfoH5.top.adPic" alt="">
+                    <img :src="item.adInfoH5.top.adPic" alt="">
                 </van-cell>
                 <div class="products-items">
                     <div class="products-items-1">
                         <van-cell class="products-item" v-for="(item1) in item.recSkuInfoList.slice(0, 4)"
-                            :key="item1.skuId" :to="`/detail/${item1.prodCd}/${item1.skuCd}`">
+                            :key="item1.skuId" :to="`/detail/${item1.prodCd}/${item1.skuCd}`" >
                             <a href="">
                                 <div class="products-item-img"><img :src="item1.skuImg" alt=""></div>
                                 <div class="product-item-t1 van-multi-ellipsis--l2">{{item1.skuTitl}}</div>
@@ -82,7 +82,7 @@
                     this.ProductList = res.data;
                     console.log(this.ProductList);
                 })
-            }
+            },
         },
         computed: {
             swiper() {
@@ -130,7 +130,7 @@
         margin-bottom: 2vw
     }
 
-    .products-ad  img {
+    .products-ad img {
         width: 100%;
         height: 100%;
     }
